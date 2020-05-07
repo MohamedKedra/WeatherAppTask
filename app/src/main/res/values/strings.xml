@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WeatherAppTask</string>
+    <string name="weather_condition">Weather Condition</string>
+    <string name="tempreture">Tempreture</string>
+    <string name="place_name">Place Name</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.mohamed.weatherapptask.ui.main
+package com.mohamed.weatherapptask.ui
 
 import androidx.lifecycle.ViewModel
 

@@ -1,30 +1,22 @@
 package com.mohamed.weatherapptask.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.mohamed.weatherapptask.R
+import com.mohamed.weatherapptask.app.base.BaseFragment
+import kotlinx.android.synthetic.main.main_fragment.*
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
+    override val layoutId: Int = R.layout.main_fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        rv_weather_photos.adapter = WeatherAdapter(context!!,null)
+
+        fab.setOnClickListener {
+            navigationController.navigate(R.id.action_homeFragment_to_AddNewFragment)
+        }
     }
 
 }
