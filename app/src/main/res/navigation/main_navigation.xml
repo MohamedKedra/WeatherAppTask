@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.mohamed.weatherapptask.ui.addNewPhotoWeather.AddWeatherFragment"
+        android:name="com.mohamed.weatherapptask.ui.addNewPhotoWeather.view.AddWeatherFragment"
         android:label="fragment_details"
         tools:layout="@layout/add_weather_fragment" />
 

@@ -1,4 +1,4 @@
-package com.mohamed.weatherapptask.ui.addNewPhotoWeather
+package com.mohamed.weatherapptask.ui.addNewPhotoWeather.view
 
 import android.Manifest
 import android.app.Activity
@@ -17,7 +17,6 @@ import androidx.core.content.ContextCompat
 import com.mohamed.weatherapptask.R
 import com.mohamed.weatherapptask.app.base.BaseFragment
 import kotlinx.android.synthetic.main.add_weather_fragment.*
-import java.io.File
 
 class AddWeatherFragment : BaseFragment() {
 
@@ -30,6 +29,9 @@ class AddWeatherFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        toolbar_main.title = "Add New Weather"
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
 
         fab_add_image.setOnClickListener {
             if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED &&

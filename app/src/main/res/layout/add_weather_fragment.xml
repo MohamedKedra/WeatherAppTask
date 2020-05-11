@@ -4,15 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.addNewPhotoWeather.AddWeatherFragment">
+    tools:context=".ui.addNewPhotoWeather.view.AddWeatherFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_marginHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_main"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="enterAlways" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
             android:layout_margin="16dp"
@@ -40,6 +52,7 @@
         </FrameLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
             android:id="@+id/tf_place"
             android:layout_width="match_parent"
@@ -55,6 +68,8 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
             android:id="@+id/tf_temp"
             android:layout_width="match_parent"
@@ -70,6 +85,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
             android:id="@+id/tf_condition"
             android:layout_width="match_parent"

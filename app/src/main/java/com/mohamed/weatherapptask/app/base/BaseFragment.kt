@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 
-import com.mohamed.weatherapptask.R
 import kotlinx.android.synthetic.main.layout_error_loading.*
 
 abstract class BaseFragment : Fragment() {

@@ -12,5 +12,5 @@ interface WeatherDao {
     fun getCachedWeathers(): List<Weather>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertNewWeather(word: Weather)
+    fun insertNewWeather(weather: Weather)
 }
