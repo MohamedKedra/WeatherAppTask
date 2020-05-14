@@ -12,6 +12,6 @@ var addWeatherModule = module {
     }
 
     viewModel {
-        AddWeatherViewModel(get())
+        AddWeatherViewModel(get(),get())
     }
 }

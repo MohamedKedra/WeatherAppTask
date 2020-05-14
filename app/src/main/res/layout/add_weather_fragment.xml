@@ -6,101 +6,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.addNewPhotoWeather.view.AddWeatherFragment">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_main"
+            <FrameLayout
+                android:layout_margin="16dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_image"
+                    android:contentDescription="@string/todo" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_add_image"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:layout_height="wrap_content"/>
+
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:layout_scrollFlags="enterAlways" />
-        </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/layout_error_loading"/>
+
+                <LinearLayout
+                    android:id="@+id/fl_container"
+                    android:layout_margin="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_place"
+                        android:layout_marginVertical="8dp"
+                        android:text="Your place name"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_temp"
+                        android:layout_marginVertical="8dp"
+                        android:text="Tempreture"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_status"
+                        android:layout_marginVertical="8dp"
+                        android:text="Weather Status"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_load"
+                android:layout_margin="16dp"
+                android:text="Get Weather Now"
+                android:textAllCaps="false"
+                android:background="@color/colorAccent"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add"
+                android:layout_margin="16dp"
+                android:text="Add Weather"
+                android:textAllCaps="false"
+                android:background="@color/colorAccent"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <FrameLayout
-            android:layout_margin="16dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:visibility="gone"
+            android:background="#80000000"
+            android:id="@+id/loading_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/iv_photo"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/ic_image"
-                android:contentDescription="@string/todo" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_add_image"
-                android:layout_gravity="bottom|end"
-                android:layout_marginBottom="8dp"
+            <ProgressBar
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_add"
                 android:layout_height="wrap_content"/>
 
         </FrameLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
-            android:id="@+id/tf_place"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/place_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
-            android:id="@+id/tf_temp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/tempreture">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
-            android:id="@+id/tf_condition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/weather_condition">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
