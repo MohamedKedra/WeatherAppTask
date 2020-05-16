@@ -16,8 +16,6 @@ import com.mohamed.weatherapptask.utils.ImageConverter
 import kotlinx.android.synthetic.main.main_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
 
 class HomeFragment : BaseFragment(),OnListItemClickListener<WeatherPhoto> {
 
