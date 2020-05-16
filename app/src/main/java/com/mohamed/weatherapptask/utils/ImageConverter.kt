@@ -35,7 +35,8 @@ object ImageConverter {
 
         val displayMetrics = context.resources.displayMetrics
         val b = Bitmap.createScaledBitmap(bitmap,displayMetrics.widthPixels/2,displayMetrics.widthPixels/2,true)
-        val canvas = Canvas(b)
+        val mutableBitmap: Bitmap = b.copy(Bitmap.Config.ARGB_8888, true)
+        val canvas = Canvas(mutableBitmap)
 
         val paint = Paint()
         paint.color = Color.WHITE
@@ -47,12 +48,12 @@ object ImageConverter {
         transPaint.color = Color.BLACK
         transPaint.alpha = 0x55
 
-        canvas.drawBitmap(b, 0f, 0f, paint)
-        canvas.drawRect(0F,0F,b.width.toFloat(),b.width.toFloat(), transPaint)
-        canvas.drawText(place, (b.width / 2 - 50).toFloat(), (b.height - 50).toFloat(), paint)
-        canvas.drawText(temp, (b.width / 2 - 50).toFloat(), (b.height - 100).toFloat(), paint)
-        canvas.drawText(condition, (b.width / 2 - 50).toFloat(), (b.height - 150).toFloat(), paint)
-        return b
+        canvas.drawBitmap(mutableBitmap, 0f, 0f, paint)
+        canvas.drawRect(0F,0F,mutableBitmap.width.toFloat(),mutableBitmap.width.toFloat(), transPaint)
+        canvas.drawText(place, (mutableBitmap.width / 2 - 50).toFloat(), (mutableBitmap.height - 50).toFloat(), paint)
+        canvas.drawText(temp, (mutableBitmap.width / 2 - 50).toFloat(), (mutableBitmap.height - 100).toFloat(), paint)
+        canvas.drawText(condition, (mutableBitmap.width / 2 - 50).toFloat(), (mutableBitmap.height - 150).toFloat(), paint)
+        return mutableBitmap
     }
 
     private fun decodeSampledBitmapFromResource(
