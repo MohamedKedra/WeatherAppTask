@@ -1,7 +1,8 @@
-package com.mohamed.articaledemoapp.ui.main.di
+package com.mohamed.weatherapptask.app.di
 
 import android.app.Application
 import com.mohamed.weatherapptask.ui.addNewPhotoWeather.di.addWeatherModule
+import com.mohamed.weatherapptask.ui.home.di.homeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,6 +16,7 @@ class ApplicationDemo : Application() {
             modules(
                 listOf(
                     appModule,
+                    homeModule,
                     addWeatherModule
                 )
             )

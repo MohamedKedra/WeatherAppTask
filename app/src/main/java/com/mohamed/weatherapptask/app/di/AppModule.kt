@@ -1,11 +1,11 @@
-package com.mohamed.articaledemoapp.ui.main.di
+package com.mohamed.weatherapptask.app.di
 
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.room.Room
-import com.mohamed.weatherapptask.app.Constants
-import com.mohamed.weatherapptask.app.WeatherDatabase
+import com.mohamed.weatherapptask.models.db.dao.WeatherDatabase
 import com.mohamed.weatherapptask.models.network.api.WeatherApi
+import com.mohamed.weatherapptask.utils.Constants
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,11 +23,15 @@ val appModule = module {
     }
 
     single {
-        Room.databaseBuilder(get(),WeatherDatabase::class.java,"weather_database")
+        Room.databaseBuilder(
+            get(),
+            WeatherDatabase::class.java, Constants.db.DB_NAME
+        )
+            .build()
     }
 
     single {
-        get<WeatherDatabase>().WeatherDao()
+        get<WeatherDatabase>().weatherDao()
     }
 
     single {

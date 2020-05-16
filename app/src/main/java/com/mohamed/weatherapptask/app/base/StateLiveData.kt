@@ -1,7 +1,6 @@
-package com.mohamed.articaledemoapp.ui.main.ui.bases
+package com.mohamed.weatherapptask.app.base
 
 import androidx.lifecycle.MutableLiveData
-import com.mohamed.weatherapptask.app.base.StateData
 
 class StateLiveData<T> : MutableLiveData<StateData<T>>() {
 

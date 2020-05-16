@@ -2,7 +2,6 @@ package com.mohamed.weatherapptask
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mohamed.weatherapptask.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

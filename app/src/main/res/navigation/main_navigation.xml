@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mohamed.weatherapptask.ui.main.MainFragment"
+        android:name="com.mohamed.weatherapptask.ui.home.view.HomeFragment"
         android:label="fragment_main"
         tools:layout="@layout/main_fragment">
         <action

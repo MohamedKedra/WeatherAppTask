@@ -8,10 +8,10 @@ import org.koin.dsl.module
 var addWeatherModule = module {
 
     single {
-        AddWeatherRepository(get())
+        AddWeatherRepository(get(), get())
     }
 
     viewModel {
-        AddWeatherViewModel(get(),get())
+        AddWeatherViewModel(get(), get())
     }
 }

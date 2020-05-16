@@ -1,4 +1,4 @@
-package com.mohamed.articaledemoapp.ui.main.ui.bases
+package com.mohamed.weatherapptask.app.base
 
 import android.net.ConnectivityManager
 import androidx.lifecycle.ViewModel
@@ -6,9 +6,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-abstract class BaseViewModel(protected val connectivityManager: ConnectivityManager) : ViewModel() {
+abstract class BaseViewModel(
+    private val connectivityManager: ConnectivityManager
+) : ViewModel() {
 
-    var requestInProgress = false
+    private var requestInProgress = false
         private set
 
     protected val isNetworkAvailable: Boolean
