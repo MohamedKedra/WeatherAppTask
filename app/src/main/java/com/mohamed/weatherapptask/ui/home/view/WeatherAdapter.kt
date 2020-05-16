@@ -1,7 +1,9 @@
 package com.mohamed.weatherapptask.ui.home.view
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.media.ThumbnailUtils
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,17 +34,11 @@ class WeatherAdapter(
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val item = items[position]
         if (item.photo.isNotEmpty()) {
-            val bitmap = ImageConverter.drawTextOnImage(
-                ImageConverter.convertStringToBitmap(
-                    item.photo
-                ), item.temperature
-            )
-            val photo = ThumbnailUtils.extractThumbnail(bitmap,128,128)
-            holder.itemView.ivImage.setImageBitmap(photo)
+            val bit : Bitmap = ImageConverter.convertStringToBitmap(item.photo)
+
+            val displayMetrics = context.resources.displayMetrics
+            holder.itemView.ivImage.setImageBitmap(Bitmap.createScaledBitmap(bit,displayMetrics.widthPixels/2,displayMetrics.widthPixels/2,true))
         }
-        holder.itemView.tv_place.text = item.place
-        holder.itemView.tv_temp.text = item.temperature
-        holder.itemView.tv_status.text = item.condition
     }
 
     inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{

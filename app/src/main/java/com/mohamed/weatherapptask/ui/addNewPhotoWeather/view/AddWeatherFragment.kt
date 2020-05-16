@@ -77,13 +77,22 @@ class AddWeatherFragment : BaseFragment() {
 
     private fun addNewWeatherPhotoIntoDb(it: View) {
 
+        val place = tv_place.text.toString()
+        val temp = tv_temp.text.toString()
+        val condition = tv_status.text.toString()
+
+        val bitmap = ImageConverter.drawTextOnImage(
+            context!!, mCurrentPhotoPath!!, "Address is ".plus(place),
+            "Temperature is ".plus(temp).plus("°C"),
+            "Weather Condition is ".plus(condition)
+        )
         loading_layout.visibility = View.VISIBLE
         if (isDataFetchedFromApi && isImageSelected) {
             val weatherPhoto = WeatherPhoto(
-                photo = ImageConverter.convertBitmapToString(mCurrentPhotoPath!!),
-                place = tv_place.text.toString(),
-                temperature = tv_temp.text.toString(),
-                condition = tv_status.text.toString()
+                photo = ImageConverter.convertBitmapToString(bitmap!!),
+                place = place,
+                temperature = temp,
+                condition = condition
             )
             viewModel.insetNewWeatherIntoDb(weatherPhoto)
             loading_layout.visibility = View.GONE

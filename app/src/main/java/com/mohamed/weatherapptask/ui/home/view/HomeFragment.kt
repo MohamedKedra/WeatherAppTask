@@ -4,10 +4,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mohamed.weatherapptask.R
 import com.mohamed.weatherapptask.app.base.BaseFragment
 import com.mohamed.weatherapptask.models.db.models.WeatherPhoto
@@ -27,9 +27,25 @@ class HomeFragment : BaseFragment(),OnListItemClickListener<WeatherPhoto> {
         super.onActivityCreated(savedInstanceState)
 
         showLayoutLoading()
-        homeViewModel.allWeatherPhotos.observe(this, Observer { weatherPhotos ->
+        observeWeatherPhotos()
+
+        fab.setOnClickListener {
+            navigationController.navigate(R.id.action_homeFragment_to_AddNewFragment)
+        }
+
+        sr_refresh.setOnRefreshListener {
+            observeWeatherPhotos()
+        }
+    }
+
+    private fun observeWeatherPhotos(){
+        sr_refresh.isRefreshing = true
+        homeViewModel.allWeatherPhotos.observe(activity!!, Observer { weatherPhotos ->
+            sr_refresh.isRefreshing = false
             hideLayoutErrorAndLoading()
             if (weatherPhotos != null && weatherPhotos.isNotEmpty()) {
+
+                rv_weather_photos.layoutManager = GridLayoutManager(context!!,2)
                 rv_weather_photos.adapter =
                     WeatherAdapter(
                         context!!,
@@ -41,10 +57,6 @@ class HomeFragment : BaseFragment(),OnListItemClickListener<WeatherPhoto> {
             }
 
         })
-
-        fab.setOnClickListener {
-            navigationController.navigate(R.id.action_homeFragment_to_AddNewFragment)
-        }
     }
 
     override fun onItemClick(view: View, model: WeatherPhoto) {
