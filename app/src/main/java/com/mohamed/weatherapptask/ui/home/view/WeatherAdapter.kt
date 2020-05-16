@@ -1,6 +1,7 @@
 package com.mohamed.weatherapptask.ui.home.view
 
 import android.content.Context
+import android.media.ThumbnailUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,8 @@ import kotlinx.android.synthetic.main.item_photo_weather.view.*
 
 class WeatherAdapter(
     private val context: Context,
-    val items: List<WeatherPhoto>
-
+    val items: List<WeatherPhoto>,
+    private val onListItemClickListener: OnListItemClickListener<WeatherPhoto>
 ) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
@@ -30,15 +31,29 @@ class WeatherAdapter(
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val item = items[position]
-        if (item.photo.isNotEmpty()) holder.itemView.ivImage.setImageBitmap(
-            ImageConverter.convertStringToBitmap(
-                item.photo
+        if (item.photo.isNotEmpty()) {
+            val bitmap = ImageConverter.drawTextOnImage(
+                ImageConverter.convertStringToBitmap(
+                    item.photo
+                ), item.temperature
             )
-        )
+            val photo = ThumbnailUtils.extractThumbnail(bitmap,128,128)
+            holder.itemView.ivImage.setImageBitmap(photo)
+        }
         holder.itemView.tv_place.text = item.place
         holder.itemView.tv_temp.text = item.temperature
         holder.itemView.tv_status.text = item.condition
     }
 
-    inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            onListItemClickListener.onItemClick(itemView,items[adapterPosition])
+        }
+
+    }
 }
