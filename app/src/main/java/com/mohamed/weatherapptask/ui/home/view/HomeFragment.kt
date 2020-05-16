@@ -5,6 +5,9 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,6 +30,7 @@ class HomeFragment : BaseFragment(),OnListItemClickListener<WeatherPhoto> {
         super.onActivityCreated(savedInstanceState)
 
         showLayoutLoading()
+
         observeWeatherPhotos()
 
         fab.setOnClickListener {
@@ -43,15 +47,17 @@ class HomeFragment : BaseFragment(),OnListItemClickListener<WeatherPhoto> {
         homeViewModel.allWeatherPhotos.observe(activity!!, Observer { weatherPhotos ->
             sr_refresh.isRefreshing = false
             hideLayoutErrorAndLoading()
+            val  adapter = WeatherAdapter(
+                context!!,
+                this
+            )
+            rv_weather_photos.adapter = adapter
+
+
+            rv_weather_photos.layoutManager = GridLayoutManager(context!!,2)
             if (weatherPhotos != null && weatherPhotos.isNotEmpty()) {
 
-                rv_weather_photos.layoutManager = GridLayoutManager(context!!,2)
-                rv_weather_photos.adapter =
-                    WeatherAdapter(
-                        context!!,
-                        weatherPhotos,
-                        this
-                    )
+                adapter.setItems(weatherPhotos)
             } else {
                 showLayoutError("No Data Found")
             }
@@ -75,5 +81,16 @@ class HomeFragment : BaseFragment(),OnListItemClickListener<WeatherPhoto> {
             e.printStackTrace();
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        homeViewModel.deleteAllData()
+        return super.onOptionsItemSelected(item)
     }
 }

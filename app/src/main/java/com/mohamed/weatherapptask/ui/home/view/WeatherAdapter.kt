@@ -15,9 +15,10 @@ import kotlinx.android.synthetic.main.item_photo_weather.view.*
 
 class WeatherAdapter(
     private val context: Context,
-    val items: List<WeatherPhoto>,
     private val onListItemClickListener: OnListItemClickListener<WeatherPhoto>
 ) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
+
+    private var photos = emptyList<WeatherPhoto>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(
@@ -29,10 +30,15 @@ class WeatherAdapter(
         )
     }
 
-    override fun getItemCount(): Int = items.size
+    fun setItems(photos: List<WeatherPhoto>){
+        this.photos = photos
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount(): Int = photos.size
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        val item = items[position]
+        val item = photos[position]
         if (item.photo.isNotEmpty()) {
             val bit : Bitmap = ImageConverter.convertStringToBitmap(item.photo)
 
@@ -48,7 +54,7 @@ class WeatherAdapter(
         }
 
         override fun onClick(p0: View?) {
-            onListItemClickListener.onItemClick(itemView,items[adapterPosition])
+            onListItemClickListener.onItemClick(itemView,photos[adapterPosition])
         }
 
     }

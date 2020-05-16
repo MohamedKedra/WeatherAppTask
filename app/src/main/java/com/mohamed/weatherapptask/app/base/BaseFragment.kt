@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.layout_error_loading.*
+import kotlinx.android.synthetic.main.main_fragment.*
 
 abstract class BaseFragment : Fragment() {
 
@@ -22,6 +23,7 @@ abstract class BaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        setHasOptionsMenu(true)
         return inflater.inflate(layoutId, container, false)
     }
 
