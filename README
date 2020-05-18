@@ -1,5 +1,7 @@
 Demo Features:
 - Get user current location using Google FusedLocation
+- take camera photo
+- select image from gallery
 - call Open Weather API to get current weather
 - Add Banner Overlay Image (Bitmap) and its content 
 - Insert and retrieve WeatherPhoto from Room DB
