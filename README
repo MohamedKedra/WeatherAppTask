@@ -1,0 +1,15 @@
+Demo Features:
+- Get user current location using Google FusedLocation
+- call Open Weather API to get current weather
+- Add Banner Overlay Image (Bitmap) and its content 
+- Insert and retrieve WeatherPhoto from Room DB
+- Scale Image and Share to social media
+
+Topics:
+MVVM with Android Architecture Components(Room, LiveData, ViewModel)
+Kotlin Coroutines
+Retrofit for HTTP Request
+Koin for Dependency Injection
+OpenWeatherApi
+Material Design
+
